@@ -15,19 +15,33 @@ void displayAlertMessage()
     }
 }
 
-int vitalsOk(float temperature, float pulseRate, float spo2) {
-  if (temperature > 102 || temperature < 95) {
+int temperature_ok(float temperature)
+{
+    if (temperature > 102 || temperature < 95) {
     cout << "Temperature is critical!\n";
     displayAlertMessage();
     return 0;
-  } else if (pulseRate < 60 || pulseRate > 100) {
+    }
+}
+
+int pulseRate_ok(float pulseRate)
+{
+  if (pulseRate < 60 || pulseRate > 100) {
     cout << "Pulse Rate is out of range!\n";
     displayAlertMessage();
     return 0;
-  } else if (spo2 < 90) {
+  }
+}
+
+int spo2_ok(float spo2)
+{
+  if (spo2 < 90) {
     cout << "Oxygen Saturation out of range!\n";
     displayAlertMessage();
     return 0;
   }
-  return 1;
+}
+
+int vitalsOk(float temperature, float pulseRate, float spo2) {
+  return temperature_ok(temperature) && pulseRate_ok(pulseRate) && spo2_ok(spo2);
 }
