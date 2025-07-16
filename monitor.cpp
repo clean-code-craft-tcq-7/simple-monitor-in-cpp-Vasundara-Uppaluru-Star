@@ -14,27 +14,9 @@ void displayAlertMessage(void) {
   }
 }
 
-int temperature_ok(float temperature) {
-  if (temperature > 102 || temperature < 95) {
-  cout << "Temperature is critical!\n";
-  displayAlertMessage();
-  return 0;
-  }
-  return 1;
-}
-
-int pulseRate_ok(float pulseRate) {
-  if (pulseRate < 60 || pulseRate > 100) {
-    cout << "Pulse Rate is out of range!\n";
-    displayAlertMessage();
-    return 0;
-  }
-  return 1;
-}
-
-int spo2_ok(float spo2) {
-  if (spo2 < 90) {
-    cout << "Oxygen Saturation out of range!\n";
+int is_in_range(float value, float min_value, float max_value, const char* message) {
+  if (value < min_value || value > max_value) {
+    cout << message << "\n";
     displayAlertMessage();
     return 0;
   }
@@ -42,5 +24,7 @@ int spo2_ok(float spo2) {
 }
 
 int vitalsOk(float temperature, float pulseRate, float spo2) {
-  return temperature_ok(temperature) && pulseRate_ok(pulseRate) && spo2_ok(spo2);
+  return (is_in_range(temperature, 95, 102, "Temperature is critical!") &&
+  is_in_range(pulseRate, 60, 100, "Pulse Rate is out of range!") &&
+  is_in_range(spo2, 90, 100, "Oxygen Saturation out of range!") );
 }
