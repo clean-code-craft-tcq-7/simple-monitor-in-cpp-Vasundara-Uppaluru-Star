@@ -20,6 +20,7 @@ int temperature_ok(float temperature) {
   displayAlertMessage();
   return 0;
   }
+  return 1;
 }
 
 int pulseRate_ok(float pulseRate) {
@@ -28,6 +29,7 @@ int pulseRate_ok(float pulseRate) {
     displayAlertMessage();
     return 0;
   }
+  return 1;
 }
 
 int spo2_ok(float spo2) {
@@ -36,6 +38,7 @@ int spo2_ok(float spo2) {
     displayAlertMessage();
     return 0;
   }
+  return 1;
 }
 
 int vitalsOk(float temperature, float pulseRate, float spo2) {
